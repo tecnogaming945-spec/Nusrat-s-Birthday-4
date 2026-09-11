@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Nusrat</title>
+    <!-- Google Fonts for gorgeous typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Page Slider Wrapper */
+        .pages-wrapper {
+            display: flex;
+            width: 300vw;
+            height: 100vh;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .page {
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Background Images */
+        #page1 {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('Nusrat 5.jpg');
+        }
+
+        #page2 {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('Nusrat 1.jpg');
+        }
+
+        #page3 {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('Nusrat 3.jpg');
+        }
+
+        /* Typography & Content Styles */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: #ffde59;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            margin-top: 20px;
+        }
+
+        /* Close to vanish 17-word text block */
+        .vanishing-text {
+            font-size: 0.95rem;
+            max-width: 85%;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.25); /* Close to vanishing/faded */
+            text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+            margin: auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+
+        .big-wish {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 90%;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .big-wish span {
+            color: #ff758c;
+            font-weight: 600;
+        }
+
+        /* Navigation Buttons */
+        .nav-btn {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            transition: transform 0.2s, opacity 0.2s;
+            margin-bottom: 20px;
+            outline: none;
+            z-index: 10;
+        }
+
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Page 3 Animation Container (16-17 seconds loop/sequence) */
+        .animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .animated-card {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 2px solid #ffde59;
+            width: 85%;
+            max-width: 400px;
+            animation: pulseCard 16.5s infinite ease-in-out;
+            z-index: 5;
+        }
+
+        .animated-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ffde59;
+            margin-bottom: 10px;
+        }
+
+        .animated-card p {
+            font-size: 0.95rem;
+            color: #eee;
+            animation: textFade 16.5s infinite;
+        }
+
+        @keyframes pulseCard {
+            0%, 100% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; border-color: #ff758c; }
+        }
+
+        @keyframes textFade {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="pages-wrapper" id="pagesWrapper">
+        
+        <!-- PAGE 1 -->
+        <div class="page" id="page1">
+            <div>
+                <h1>Happy Birthday Nusrat</h1>
+            </div>
+            <!-- Exactly 17 words close to vanish text -->
+            <div class="vanishing-text">
+                Happy birthday, my dear friend. I don't want to finish season 2 before starting with a story on your birthday. Hahaha. Keep it away from people's eyes, too. That's why I secretly gave you something.
+            </div>
+            <button class="nav-btn" onclick="goToPage(1)">Next Page ➔</button>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="page" id="page2">
+            <div>
+                <h1>Special Note</h1>
+            </div>
+            <div class="big-wish">
+               Happy birthday, Nusrat! 🌻
+From a funny "elder sister" joke to realizing you're my crush and much more to each other, our dynamic has grown so special. I hope our bond lasts forever and eventually turns into a formal relationship.
+I know you're dealing with a lot of pressure right now, but your resilience will silence every doubt through your success. My prayer is for all your dreams to come true, for lasting stability, and for a long, blessed life ahead.
+Whenever things feel heavy, remember I’m always right here. Have a wonderful day, Baba! 🍉
+            </div>
+            <button class="nav-btn" onclick="goToPage(2)">Next Page ➔</button>
+        </div>
+
+        <!-- PAGE 3 -->
+        <div class="page" id="page3">
+            <div class="animation-container">
+                <div class="animated-card">
+                    <h2>Forever Shining</h2>
+                    <p>Never forget yourself. Spread your light all around. I love you!! 😝 ~MTR (12-09-2026)</p>
+                </div>
+            </div>
+            <div style="z-index: 10;">
+                <h1>17</h1>
+            </div>
+            <button class="nav-btn" style="z-index: 10;" onclick="goToPage(0)">↺ Restart</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let currentPage = 0;
+    const wrapper = document.getElementById('pagesWrapper');
+
+    // Trigger Confetti effect immediately when page opens
+    window.addEventListener('load', () => {
+        triggerConfetti();
+    });
+
+    function triggerConfetti() {
+        var duration = 3 * 1000;
+        var end = Date.now() + duration;
+
+        (function frame() {
+            confetti({
+                particleCount: 4,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+            confetti({
+                particleCount: 4,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
+    }
+
+    function goToPage(pageIndex) {
+        currentPage = pageIndex;
+        wrapper.style.transform = `translateX(-${currentPage * 100}vw)`;
+        
+        // Extra burst of confetti when reaching page 2 or 3 for added interaction
+        if(currentPage > 0) {
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: { y: 0.8 }
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
